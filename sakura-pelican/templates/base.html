@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+  {% block title %}
+  {% endblock %}
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='/theme/css/normalize.css' rel='stylesheet' type='text/css'>
+  <link href='/theme/css/navbar.css' rel='stylesheet' type='text/css'>
+  <link href='/theme/css/math2html.css' rel='stylesheet' type='text/css'>
+  {% if THEME_FLAVOUR == 'ink' %}
+  <link href='/theme/css/sakura-ink.css' id="sakura-css" rel='stylesheet' type='text/css'>
+  {% elif THEME_FLAVOUR == 'dark' %}
+  <link href='/theme/css/sakura-dark.css' id="sakura-css" rel='stylesheet' type='text/css'>
+  {% elif THEME_FLAVOUR == 'vader' %}
+  <link href='/theme/css/sakura-vader.css' id="sakura-css" rel='stylesheet' type='text/css'>
+  {% elif THEME_FLAVOUR == 'pink' %}
+  <link href='/theme/css/sakura-pink.css' id="sakura-css" rel='stylesheet' type='text/css'>
+  {% elif THEME_FLAVOUR == 'dark-solarized' %}
+  <link href='/theme/css/sakura-dark-solarized.css' id="sakura-css" rel='stylesheet' type='text/css'>
+  {% elif THEME_FLAVOUR == 'earthly' %}
+  <link href='/theme/css/sakura-earthly.css' id="sakura-css" rel='stylesheet' type='text/css'>
+  {% else %}
+  <link href='/theme/css/sakura.css' id="sakura-css" rel='stylesheet' type='text/css'>
+  {% endif %}
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="topnav" id="myTopnav">
+        <a href="{{SITEURL}}/">{{SITENAME}}</a>
+        <a href="{{SITEURL}}/archives.html">Archives</a>
+        <div class="dropdown">
+            <button class="dropbtn">Categories
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                {% for category in categories %}
+                {% if THEME_FLAVOUR == 'dark' %}
+                <a href="{{SITEURL}}/{{category[0].url}}" style="color:black;">{{category[0]}}</a>
+                {% else %}
+                <a href="{{SITEURL}}/{{category[0].url}}">{{category[0]}}</a>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% for page in pages %}
+        <a href="{{SITEURL}}/{{page.url}}">{{page.title}}</a>
+        {% endfor %}
+        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+
+    <!-- Content of the page -->
+    {% block content %}
+        {% block front_message %}
+        {% endblock %}
+        {% for article in articles_page.object_list %}
+        <p style="margin-bottom:0; padding-bottom:0;"> <a href="{{SITEURL}}/{{article.author.url}}">{{article.author}}</a> on {{article.date|strftime('%d %B %Y')}} </p>
+        <h2 style="margin-top:0; padding-top:0; font-size:1.25em;"> <a href="{{SITEURL}}/{{article.url}}"> {{article.title}} </a> </h2>
+        {% endfor %}
+        <div>
+            {% if articles_page.has_previous() %}
+            <a href="{{ SITEURL }}/{{ articles_paginator.page(1).url }}">&laquo;</a>
+            <a href="{{ SITEURL }}/{{ articles_previous_page.url }}">‹</a>
+            {% endif %}
+            Page {{ articles_page.number }} / {{ articles_paginator.num_pages }}
+            {% if articles_page.has_next() %}
+            <a href="{{ SITEURL }}/{{ articles_next_page.url }}">›</a>
+            <a href="{{ SITEURL }}/{{ articles_paginator.page(articles_paginator.num_pages).url }}">&raquo;</a>
+            {% endif %}
+        </div>
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer style="border-top:2px solid gray; margin-top: 2em; padding-top: 1em;">
+        {% if LICENSE == 'CC-BY' %}
+        <img alt="CC-BY Logo" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/CC_BY_icon.svg" style="margin-bottom:0;">
+        {% elif LICENSE == 'CC-BY-SA' %}
+        <img alt="CC-BY-SA Logo" src="https://upload.wikimedia.org/wikipedia/commons/e/e5/CC_BY-SA_icon.svg" style="margin-bottom:0;">
+        {% elif LICENSE == 'CC-BY-NC' %}
+        <img alt="CC-BY-NC Logo" src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Cc_by-nc_icon.svg" style="margin-bottom:0;">
+        {% elif LICENSE == 'CC-BY-NC-SA' %}
+        <img alt="CC-BY-NC-SA Logo" src="https://upload.wikimedia.org/wikipedia/commons/1/12/Cc-by-nc-sa_icon.svg" style="margin-bottom:0;">
+        {% elif LICENSE == 'CC-BY-ND' %}
+        <img alt="CC-BY-ND Logo" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Cc_by-nd_icon.svg" style="margin-bottom:0;">
+        {% elif LICENSE == 'CC-BY-NC-ND' %}
+        <img alt="CC-BY-NC-ND Logo" src="https://upload.wikimedia.org/wikipedia/commons/7/73/Cc_by-nc-nd_icon.svg" style="margin-bottom:0;">
+        {% elif LICENSE == 'CC0' %}
+        <img alt="CC0 Logo" src="https://upload.wikimedia.org/wikipedia/commons/6/69/CC0_button.svg" style="margin-bottom:0;">
+        {% endif %}
+
+        {% if FOOTER_NOTE %}
+        <p>{{FOOTER_NOTE}}</p>
+        {% else %}
+        <p>Site maintained by {{AUTHOR}} </p>
+        {% endif %}
+    </footer>
+
+    <script>
+        function myFunction() {
+            console.log("Hello World!!");
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+</body>
+</html>
+

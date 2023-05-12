@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}
+<title>{{SITENAME}} 	— Archives</title>
+{% endblock %}
+
+{% block front_message %}
+<p> Articles in category <em>"{{category}}"</em> </p>
+{% endblock %}
+
+{% block content %}
+<ul>
+{% set ns = namespace(current_year=1000) %}
+{% set first_year = dates[0].date.year %}
+{% for article in dates %}
+    {% if article.date.year != ns.current_year %}
+    {% set ns.current_year = article.date.year %}
+    {% if ns.current_year != first_year %}
+    </ol></li>
+    {% endif %}
+    <li> {{ns.current_year}} <ol>
+    {% endif %}
+    <li> <a href="{{SITEURL}}/{{article.url}}"> {{article.title}} </a> </li>
+{% endfor %}
+</ol></li>
+</ul>
+{% endblock %}

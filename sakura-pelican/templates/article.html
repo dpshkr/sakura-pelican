@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>{{SITENAME}} 	— {{article.title}}</title>
+{% endblock %}
+
+{% block content %}
+<h1 style="text-align:center;"> {{article.title}} </h1>
+{{article.content}}
+{% endblock %}
