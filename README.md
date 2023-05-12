@@ -27,7 +27,7 @@ Default flavour is `sakura`.
 
 Content can be licensed with various creative common licenses if you choose to do so.
 An appropriate CC license logo will be added to the footer. 
-This can be done by seeting `LICENSE` variable in ``pelicanconf.py`.
+This can be done by seeting `LICENSE` variable in `pelicanconf.py`.
 Available options are `CC0`, `CC-BY`, `CC-BY-SA`, `CC-BY-NC`, `CC-BY-NC-SA`, `CC-BY-ND`, `CC-BY-NC-ND`.
 
 # Footer note
