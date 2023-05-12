@@ -17,3 +17,20 @@ Note that math in markdown format is not supported.
 Please see the documentation of reStructuredText for more details.
 ![Math display](screenshots/math.png)
 
+# Theme flavours
+
+Various flavours of the theme can be set by the variable `THEME_FLAVOUR` in `pelicanconf.py`. 
+Available flavours are `ink`, `pink`, `earthly`, `dark`, `dark-solarized`, `vader` and `sakura`.
+Default flavour is `sakura`.
+
+# Creative Commons License
+
+Content can be licensed with various creative common licenses if you choose to do so.
+An appropriate CC license logo will be added to the footer. 
+This can be done by seeting `LICENSE` variable in ``pelicanconf.py`.
+Available options are `CC0`, `CC-BY`, `CC-BY-SA`, `CC-BY-NC`, `CC-BY-NC-SA`, `CC-BY-ND`, `CC-BY-NC-ND`.
+
+# Footer note
+
+You can display some footer note in the footer by setting the `FOOTER_NOTE` variable in `pelicanconf.py`.
+
