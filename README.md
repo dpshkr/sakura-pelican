@@ -15,6 +15,7 @@ Use [Pelican render math](https://github.com/pelican-plugins/render-math) plugin
 This plugin utilizes mathjax. 
 Note that math in markdown format is not supported. 
 Please see the documentation of reStructuredText for more details.
+
 ![Math display](screenshots/math.png)
 
 # Theme flavours
